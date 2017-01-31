@@ -66,52 +66,44 @@ class ViewController: UIViewController {
         //----------------------------------//
         
         
-        //Custom Button
+        //then make a action method :
         
-        
-        var cButton = UIButton()
-        cButton.frame = (frame: CGRect(x: 100, y: 200, width: 100, height:100))
-        cButton.backgroundColor = UIColor.red
-        cButton.setTitle("Custom Button", for: UIControlState.normal)
-        cButton.addTarget(self, action: #selector(buttonA), forControlEvents: .touchUpInside)
-        cButton.tag = 1;
-        
-        self.view.addSubview(cButton)
-      
-       
-
-        
-        
-
-        
-        func buttonA(sender: UIButton!) {
-            var btnsendtag: UIButton = sender
-            if btnsendtag.tag == 1 {
-                //do anything here
-            }
+        func action(sender:UIButton!) {
+            print("Button Clicked")
         }
         
+        //Custom Button
         
-       
+        let btn = UIButton(type: UIButtonType.system) as UIButton
+        //OR
+        //let btn = UIButton(type: UIButtonType.Custom) as UIButton
+        btn.backgroundColor = UIColor.blue
+        btn.setTitle("Button", for: UIControlState.normal)
+        btn.frame = (frame: CGRect(x: 100, y: 200, width: 100, height:100))
+        btn.addTarget(self, action: "clickMe:", for: UIControlEvents.touchUpInside)
+        self.view.addSubview(btn)
         
         
+        
+        func clickMe(sender:UIButton!)
+        {
+            print("Button Clicked")
+        }
+        
+        /*
+        var newButton = UIButton()
+        newButton.frame = (frame: CGRect(x: 100, y: 200, width: 100, height:100))
+        self.view.addSubview(newButton)
+        
+        
+        newButton.backgroundColor = UIColor.red
+        newButton.setTitle("Custom Button", for: UIControlState.normal)
 
+        //newButton = UIButton(type: UIButtonType.custom) as UIButton
+        newButton.addTarget(self, action: "action:", for: UIControlEvents.touchUpInside)
         
-/*
-         @selector(buttonClicked:) 
-         
-         myButton *bt = [myButton buttonWithType:UIButtonTypeCustom];
-         [bt setFrame:CGRectMake(0,0, 100, 100)];
-         [bt setExclusiveTouch:NO];
-         [bt setUserData:**(insert user data here)**];
-         
-         [bt addTarget:self action:@selector(touchUpHandler:) forControlEvents:UIControlEventTouchUpInside];
-         
-         [view addSubview:bt];
-        
-         */
-        
-        
+*/
+
         
     }
 
