@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         cButton.frame = (frame: CGRect(x: 100, y: 200, width: 100, height:100))
         cButton.backgroundColor = UIColor.red
         cButton.setTitle("Custom Button", for: UIControlState.normal)
-        cButton.addTarget(self, action: #selector(buttonAction), forControlEvents: .touchUpInside)
+        cButton.addTarget(self, action: #selector(buttonA), forControlEvents: .touchUpInside)
         cButton.tag = 1;
         
         self.view.addSubview(cButton)
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         
 
         
-        func buttonAction(sender: UIButton!) {
+        func buttonA(sender: UIButton!) {
             var btnsendtag: UIButton = sender
             if btnsendtag.tag == 1 {
                 //do anything here
