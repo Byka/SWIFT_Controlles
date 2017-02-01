@@ -13,7 +13,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var button: UIButton!
    
+    @IBOutlet weak var segmentController: UISegmentedControl!
     
+    @IBOutlet weak var segmentLabel: UILabel!
+
     @IBAction func buttonAction(_ sender: Any) {
         
         self.myAlert(message: "Out let button Clicked")
@@ -22,6 +25,29 @@ class ViewController: UIViewController {
     }
     
 
+    @IBAction func segmentButtonAction(_ sender: Any) {
+        
+        
+        
+        switch (sender as AnyObject).selectedSegmentIndex {
+        case 0:
+            self.view.backgroundColor = UIColor.green
+            
+        case 1:
+            self.view.backgroundColor = UIColor.yellow
+            
+        default:
+            self.view.backgroundColor = UIColor.red
+        }
+
+        
+    }
+    
+    
+    
+    
+    
+        
     
     func myAlert(message: String ){
         let alert = UIAlertController(title: "My Title", message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -64,48 +90,102 @@ class ViewController: UIViewController {
         self.view.addSubview(myLabel)
 
         //----------------------------------//
-        
-        
-        //then make a action method :
-        
-        func action(sender:UIButton!) {
-            print("Button Clicked")
-        }
+
         
         //Custom Button
         
-        let btn = UIButton(type: UIButtonType.system) as UIButton
-        //OR
-        //let btn = UIButton(type: UIButtonType.Custom) as UIButton
-        btn.backgroundColor = UIColor.blue
-        btn.setTitle("Button", for: UIControlState.normal)
-        btn.frame = (frame: CGRect(x: 100, y: 200, width: 100, height:100))
-        btn.addTarget(self, action: "clickMe:", for: UIControlEvents.touchUpInside)
-        self.view.addSubview(btn)
+        let cButton = UIButton()
+        cButton.frame = (frame: CGRect(x: self.button.frame.origin.x + 200, y: self.button.frame.origin.y, width: 100, height: 50))
+        cButton.backgroundColor = UIColor.red
+        cButton.setTitle("Name your Button ", for: .normal)
+        cButton.addTarget(self, action: #selector(buttonAction1), for: .touchUpInside)
+        self.view.addSubview(cButton)
         
-        
-        
-        func clickMe(sender:UIButton!)
-        {
-            print("Button Clicked")
-        }
-        
-        /*
-        var newButton = UIButton()
-        newButton.frame = (frame: CGRect(x: 100, y: 200, width: 100, height:100))
-        self.view.addSubview(newButton)
-        
-        
-        newButton.backgroundColor = UIColor.red
-        newButton.setTitle("Custom Button", for: UIControlState.normal)
 
-        //newButton = UIButton(type: UIButtonType.custom) as UIButton
-        newButton.addTarget(self, action: "action:", for: UIControlEvents.touchUpInside)
         
-*/
+        
+        let roundButton = UIButton()
+        roundButton.frame = (frame: CGRect(x: cButton.frame.origin.x , y: cButton.frame.origin.y+100, width:100, height:100))
+        
+        roundButton.backgroundColor = UIColor.red
+        roundButton.setTitle("ROUND BUTTON ", for: .normal)
+        roundButton.addTarget(self, action: #selector(buttonAction1), for: .touchUpInside)
+        
+        roundButton.layer.cornerRadius = 50
+        
+        
+        roundButton.layer.borderWidth = 1
+        roundButton.layer.borderColor = UIColor(red:1 , green:165/255 , blue:0 , alpha:1).cgColor
+        
+        roundButton.layer.borderWidth = 0.0
 
+        self.view.addSubview(roundButton)
+        
+        
+        
+        //--------Segment controller creation-------------//
+        
+        // Initialize
+        let items = ["Purple", "Green", "Blue"]
+        let customSC = UISegmentedControl(items: items)
+        customSC.selectedSegmentIndex = 0
+        
+        // Set up Frame and SegmentedControl
+        customSC.frame = (frame: CGRect(x: 120, y: 200, width: 120, height: 50))
+            
+        
+        // Style the Segmented Control
+        customSC.layer.cornerRadius = 5.0  // Don't let background bleed
+        customSC.backgroundColor = UIColor.black
+        customSC.tintColor = UIColor.white
+        
+        // Add target action method
+        //customSC.addTarget(self, action: changeColor:(), for: .valueChanged)
+        
+        //buttonAction1
+        //changeColor:
+        // Add this custom Segmented Control to our view
+        self.view.addSubview(customSC)
+        
+        
+        
+        
+        let its = ["I", "You", "We"]
+        
+        let cSegment = UISegmentedControl(items: its)
+        cSegment.frame = (frame: CGRect(x: 120, y: 300, width: 120, height:50))
+        self.view.addSubview(cSegment)
+        
+    
+   
         
     }
+//---------------View DidLoad End---------------//
+
+
+
+func changeColor (sender: UISegmentedControl) {
+    
+    
+    switch sender.selectedSegmentIndex {
+    case 0:
+        self.view.backgroundColor = UIColor.red
+    case 1:
+        self.view.backgroundColor = UIColor.orange
+    default:
+        self.view.backgroundColor = UIColor.brown
+    }
+}
+
+    func roundButton (sender: UIButton){
+        print("Round Button Action")
+    }
+    
+    func buttonAction1(sender: UIButton!) {
+        print("Button tapped")
+    }
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -115,79 +195,3 @@ class ViewController: UIViewController {
 
 }
 
-/*
- let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
- label.center = CGPoint(x: 160, y: 285)
- label.textAlignment = .center
- label.text = "I'am a test label"
- self.view.addSubview(label)
- 
- 
- open var font: UIFont! // default is nil (system font 17 plain)
- 
- open var textColor: UIColor! // default is nil (text draws black)
- 
- open var shadowColor: UIColor? // default is nil (no shadow)
- 
- open var shadowOffset: CGSize // default is CGSizeMake(0, -1) -- a top shadow
- 
- open var textAlignment: NSTextAlignment // default is NSTextAlignmentNatural (before iOS 9, the default was NSTextAlignmentLeft)
- 
- open var lineBreakMode: NSLineBreakMode // default is NSLineBreakByTruncatingTail. used for single and multiple lines of text
- 
- 
- // the underlying attributed string drawn by the label, if set, the label ignores the properties above.
- @available(iOS 6.0, *)
- @NSCopying open var attributedText: NSAttributedString? // default is nil
- 
- 
- // the 'highlight' property is used by subclasses for such things as pressed states. it's useful to make it part of the base class as a user property
- 
- open var highlightedTextColor: UIColor? // default is nil
- 
- open var isHighlighted: Bool // default is NO
- 
- 
- open var isUserInteractionEnabled: Bool // default is NO
- 
- open var isEnabled: Bool // default is YES. changes how the label is drawn
- 
- 
- // this determines the number of lines to draw and what to do when sizeToFit is called. default value is 1 (single line). A value of 0 means no limit
- // if the height of the text reaches the # of lines or the height of the view is less than the # of lines allowed, the text will be
- // truncated using the line break mode.
- 
- open var numberOfLines: Int
- 
- 
- // these next 3 property allow the label to be autosized to fit a certain width by scaling the font size(s) by a scaling factor >= the minimum scaling factor
- // and to specify how the text baseline moves when it needs to shrink the font.
- 
- open var adjustsFontSizeToFitWidth: Bool // default is NO
- 
- open var baselineAdjustment: UIBaselineAdjustment // default is UIBaselineAdjustmentAlignBaselines
- 
- @available(iOS 6.0, *)
- open var minimumScaleFactor: CGFloat // default is 0.0
- 
- 
- // Tightens inter-character spacing in attempt to fit lines wider than the available space if the line break mode is one of the truncation modes before starting to truncate.
- // The maximum amount of tightening performed is determined by the system based on contexts such as font, line width, etc.
- @available(iOS 9.0, *)
- open var allowsDefaultTighteningForTruncation: Bool // default is NO
- 
- 
- // override points. can adjust rect before calling super.
- // label has default content mode of UIViewContentModeRedraw
- 
- open func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect
- 
- open func drawText(in rect: CGRect)
- 
- 
- // Support for constraint-based layout (auto layout)
- // If nonzero, this is used when determining -intrinsicContentSize for multiline labels
- @available(iOS 6.0, *)
- open var preferredMaxLayoutWidth: CGFloat
- 
- */
