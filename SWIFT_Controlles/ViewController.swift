@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
-    
+
     @IBOutlet weak var progressBar: UIProgressView!
     
     @IBOutlet weak var progressLAbel: UILabel!
@@ -95,7 +95,16 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func goToTableView(_ sender: Any) {
+        
+        
+        
+    }
     
+    @IBAction func showPopup(_ sender: Any) {
+        
+        
+    }
     
     
         
