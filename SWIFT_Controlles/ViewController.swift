@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
 
@@ -33,6 +35,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     
     @IBOutlet weak var progressLAbel: UILabel!
+    
+    
+    
+    
     @IBAction func mySwitchAction(_ sender: UISwitch) {
         
 
@@ -98,8 +104,33 @@ class ViewController: UIViewController {
     @IBAction func goToTableView(_ sender: Any) {
         
         
+        let tableVC = TableViewController()
         
+        self.navigationController?.pushViewController(tableVC, animated: true)
+        
+        /*
+        let storyBoard: UIStoryboard = UIStoryboard (name: "Main", bundle:nil)
+        
+        let tableVC = storyBoard.instantiateInitialViewController("TableViewController") as TableViewController
+        
+        
+        self.navigationController?.pushViewController(tableVC, animated: YES)
+        */
     }
+    
+    
+    /*
+    let newViewController = NewViewController()
+    self.navigationController?.pushViewController(newViewController, animated: true)
+    
+    If you want to navigate to Controller on StoryBoard with Identifier "newViewController", then do this:
+    
+    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    let newViewController = storyBoard.instantiateViewController(withIdentifier: "newViewController") as! NewViewController
+    self.present(newViewController, animated: true, completion: nil)
+    */
+    
+    
     
     @IBAction func showPopup(_ sender: Any) {
         
