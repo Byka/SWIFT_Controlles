@@ -189,7 +189,7 @@ class ViewController: UIViewController {
         let cButton = UIButton()
         cButton.frame = (frame: CGRect(x: h_line.frame.origin.x+20, y: self.button.frame.origin.y, width: 100, height: 50))
         cButton.backgroundColor = UIColor.red
-        cButton.setTitle("Name your Button ", for: .normal)
+        cButton.setTitle("Service Calling ", for: .normal)
         cButton.addTarget(self, action: #selector(buttonAction1), for: .touchUpInside)
         self.view.addSubview(cButton)
         
@@ -328,10 +328,53 @@ func changeColor (sender: UISegmentedControl) {
     
     
     
-    
+    // MARK:- Web service calling
     func buttonAction1(sender: UIButton!) {
         print("Button tapped")
+   
+        
+        let todoEndpoint: String = "https://jsonplaceholder.typicode.com/todos/1"
+        
+        guard let url = URL(string: todoEndpoint) else {
+            print("Error: cannot create URL")
+            return
+        }
+        let urlRequest = URLRequest(url: url)
+        
+        print("SAMPLE /", urlRequest)
+ 
+        
+        
+    
     }
+    
+
+    
+    /*
+ 
+     let parseData = parseJSON(getJSON("https://httpbin.org/ip"))
+     let ipvalue = parseData.valueForKey("origin")
+     self.performSelectorOnMainThread(#selector(ViewController.updateIPlbl(_:)), withObject: ipvalue, waitUntilDone: false)
+     }
+     
+     func getJSON(urlToRequest:String) -> NSData
+     {
+     return NSData(contentsOfURL: NSURL(string: urlToRequest)!)!
+     }
+     
+     func parseJSON(inputData:NSData) -> NSDictionary{
+     let dictData = (try! NSJSONSerialization.JSONObjectWithData(inputData, options: .MutableContainers)) as! NSDictionary
+     return dictData
+     }
+     
+     func updateIPlbl(text: String) {
+     self.ipLabel.text = "Your IP is " + text
+     }
+ 
+ 
+    
+ */
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
