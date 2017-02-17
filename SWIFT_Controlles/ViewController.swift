@@ -332,18 +332,47 @@ func changeColor (sender: UISegmentedControl) {
     func buttonAction1(sender: UIButton!) {
         print("Button tapped")
    
+
+
         
-        let todoEndpoint: String = "https://jsonplaceholder.typicode.com/todos/1"
         
-        guard let url = URL(string: todoEndpoint) else {
-            print("Error: cannot create URL")
-            return
-        }
-        let urlRequest = URLRequest(url: url)
+        let config = URLSessionConfiguration.default // Session Configuration
+        let session = URLSession(configuration: config) // Load configuration into Session
+        let url = URL(string: "https://jsonplaceholder.typicode.com/todos/1")!
         
-        print("SAMPLE /", urlRequest)
- 
         
+        let task = session.dataTask(with: url, completionHandler: {
+            (data, response, error) in
+            
+            if error != nil {
+                
+                print(error!.localizedDescription)
+                
+            } else {
+                
+                
+                /*
+                do {
+                    
+                    if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
+                    {
+                        
+                        //Implement your logic
+                        print(json)
+                        
+                    }
+                    
+                } catch {
+                    
+                    print("error in JSONSerialization")
+                    
+                }
+                */
+                
+            }
+            
+        })
+        task.resume()
         
     
     }
@@ -371,8 +400,6 @@ func changeColor (sender: UISegmentedControl) {
      self.ipLabel.text = "Your IP is " + text
      }
  
- 
-    
  */
     
 
